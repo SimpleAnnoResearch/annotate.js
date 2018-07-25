@@ -1,30 +1,9 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="lib/jquery/jquery-ui.min.css" />
-    <link rel="stylesheet" href="lib/Smoothness/jquery.ui.all.css" />
-    <link rel="stylesheet" href="annotate.css" />
-
-    <script type="text/javascript" src="lib/jquery/jquery-1.8.2.js"></script>
-    <!--<script type="text/javascript" src="lib/jquery-ui.1.9m5.js"></script>-->
-
-    <script type="text/javascript" src="lib/jqueryui/jquery-ui.1.10.2.min.js"></script>
-    <!--
-      <script type="text/javascript" src="lib/jqueryui/jquery-ui.1.8.24.js"></script>
-    -->
-    <script type="text/javascript" src="lib/underscore-min.js"></script>
-    <script type="text/javascript" src="lib/backboneJS/backbone.js"></script>
-
-    <script type="text/javascript" src="lib/hallo/hallo.js"></script>
-    <script type="text/javascript" src="lib/hallo/format.js"></script>
-
-    <script type="text/javascript" src="lib/jquery.rdfquery.debug.js"></script>
-    <script type="text/javascript" src="lib/vie/vie.js"></script>
-
-
-    <script type="text/javascript" src="lib/vie.entitypreview.js"></script>
-    <script type="text/javascript" src="lib/annotate.js"></script>
-
+<!--     <link rel="stylesheet" href="lib/jquery/jquery-ui.min.css" /> -->
+<!--     <link rel="stylesheet" href="lib/Smoothness/jquery.ui.all.css" /> -->
+<!--     <link rel="stylesheet" href="annotate.css" /> -->
     <style>
 		article {
 			padding: 10px;
@@ -41,7 +20,7 @@
         document.write('<' + 'script src="lib/json/json2.js">/script>"></' + 'script>');
     }
     $(document).ready(function(){ _.defer(function(){
-        var stanbolUrl = "http://dev.iks-project.eu:8081";
+        var stanbolUrl = "http://stanbol.simple-anno.de:9090";
         $('#loadingDiv')
         .hide()  // hide it initially
         .ajaxStart(function() {
@@ -53,6 +32,8 @@
         function getChain(){
             return $("#chain").val();
         }
+        
+        //   glodmed-entity-tagging
 
         // Whenever the chain selector changes, tell annotate.js about it.
         $("#chain").bind('change', function (e) {
@@ -184,6 +165,7 @@
                     "} " +
                     "ORDER BY ASC(?name) ";
 
+                    console.log(query);
             function success(res) {
                 var chains = $('binding[name=name] literal', res).map(function () {
                     return this.textContent;
@@ -256,7 +238,7 @@
          xmlns:skos     = "http://www.w3.org/2004/02/skos/core#"
          xmlns:schema   = "http://schema.org/">
         <div class="panel" id="webview">
-            <h2>Test annotate.js on itself</h2>
+            <h2>Der zahnmedizinische Text hier eingeben und auf Enhace drucken:</h2>
             <div>
                 <label>
                     Enhancement chain:
@@ -265,41 +247,26 @@
                     </select>
                 </label>
             </div>
-            <input type="checkbox" class="enhanceButton" id="enhanceButton1" /><label for="enhanceButton1">Enhance!</label>
+<!--             <input type="checkbox" class="enhanceButton" id="enhanceButton1" /><label for="enhanceButton1">Enhance!</label> -->
             <button class="acceptAllButton" style="display:none;">Accept all</button>
             <article typeof="schema:CreativeWork" about="http://stanbol.apache.org/enhancertest">
-                <div property="sioc:content" class="content"><p>
-                    Hungary i/ˈhʌŋɡəri/ (Hungarian: Magyarország [ˈmɒɟɒrorsaːɡ] ( listen)) is a landlocked country in
-                    Central Europe.[6] It is situated in the Carpathian Basin and is bordered by Slovakia to the north,
-                    Ukraine, and Romania to the east, Serbia, and Croatia to the south, Slovenia to the southwest and
-                    Austria to the west. The country's capital, and largest city, is Budapest. Hungary is a member of
-                    the European Union, NATO, the OECD, the Visegrád Group, and the Schengen Agreement. The official
-                    language is Hungarian, also known as Magyar, which is part of the Finno-Ugric group and is the most
-                    widely spoken non-Indo-European language in Europe.[7]
-                </p>
-                <p>
-                    Following periods of successive habitation by Celts, Romans, Huns, Slavs, Gepids, and Avars, the
-                    foundation of Hungary was laid in the late 9th century by the Hungarian grand prince Árpád, whose
-                    great-grandson Saint Stephen I ascended to the throne in 1000 AD. The Kingdom of Hungary existed
-                    for 946 years,[note 1] and at various points was regarded as a major political power in Europe, as
-                    well as one of the cultural centres of the Western world.[8] After about 150 years of partial
-                    Ottoman occupation (1541–1699), Hungary was integrated into the Habsburg Monarchy, and later
-                    constituted half of the Austro–Hungarian Empire (1867–1918).
-                    </p>
+                <div property="sioc:content" class="content">
+                <p>Text hier einfuegen ...</p>
                 </div>
             </article>
             <input type="checkbox" class="enhanceButton" id="enhanceButton2" /><label for="enhanceButton2">Enhance!</label>
             <button class="acceptAllButton" style="display:none;">Accept all</button>
         </div>
-        <div>
-            <h2>Debug the widget states</h2>
-            <button class="destroy">Destroy</button>
-            <button class="instantiate">Instantiate</button>
-            <button class="enable">Enable</button>
-            <button class="disable">Disable</button>
-            <button class="listDom">Show Dom Html</button>
-        </div>
-        <p>See source code on <a href="https://github.com/szabyg/annotate.js">Github</a></p>
-        <div id="loadingDiv" style="display:none;"><img src="spinner.gif"/></div>
+<!--         <div> -->
+<!--             <h2>Debug the widget states</h2> -->
+<!--             <button class="destroy">Destroy</button> -->
+<!--             <button class="instantiate">Instantiate</button> -->
+<!--             <button class="enable">Enable</button> -->
+<!--             <button class="disable">Disable</button> -->
+<!--             <button class="listDom">Show Dom Html</button> -->
+<!--         </div> -->
+<!--         <p>See source code on <a href="https://github.com/szabyg/annotate.js">Github</a></p> -->
+<!--         <div id="loadingDiv" style="display:none;"><img src="spinner.gif"/></div> -->
+        
     </body>
 </html>
